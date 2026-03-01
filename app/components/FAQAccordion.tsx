@@ -9,7 +9,7 @@ type FAQItem = {
 };
 
 const FAQAccordion = ({ items }: { items: FAQItem[] }) => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const handleToggle = (index: number) => {
     setOpenIndex((prev) => (prev === index ? null : index));

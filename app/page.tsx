@@ -133,16 +133,23 @@ export default function Home() {
         </div>
       </div>
 
-      {/* FAQ SECTION — narrower container */}
-      <div className="mt-16 md:mt-24 lg:mt-36">
-        <SectionHeader
-          titleSpanFirst="Sıkça Sorulan"
-          titleSpanSecond="Sorular"
-          order={true}
+      {/* FAQ SECTION — narrower container with background */}
+      <div className="mt-16 md:mt-24 lg:mt-36 relative overflow-hidden">
+        <Image
+          src="/faq-bg.svg"
+          alt=""
+          fill
+          className="object-contain z-0 pointer-events-none"
         />
-        <SectionDescription description="En sık sorulan sorularınıza yanıtlar." />
-        <div className="max-w-3xl mx-auto mt-8 md:mt-16 px-4 md:px-6">
-          <FAQAccordion
+        <div className="relative z-10">
+          <SectionHeader
+            titleSpanFirst="Sıkça Sorulan"
+            titleSpanSecond="Sorular"
+            order={true}
+          />
+          <SectionDescription description="En sık sorulan sorularınıza yanıtlar." />
+          <div className="max-w-3xl mx-auto mt-8 md:mt-16 px-4 md:px-6">
+            <FAQAccordion
             items={[
               {
                 question: "Hangi ölçekte etkinlikleri yönetiyorsunuz?",
@@ -167,6 +174,7 @@ export default function Home() {
               },
             ]}
           />
+        </div>
         </div>
       </div>
 
