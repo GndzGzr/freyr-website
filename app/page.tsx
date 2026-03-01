@@ -21,26 +21,21 @@ export default function Home() {
     <div className="min-h-screen font-sans">
       <FreyerHeader />
       <MainHero
-        spanFirst="Prestigious Organizations Flawless Experience"
-        spanSecond="Global Standards"
+        spanFirst="Prestijli Organizasyonlar. Kusursuz Deneyimler."
+        spanSecond="Global Standartlar."
       />
       <div className="mt-4">
         <SectionHeader
-          titleSpanFirst="About"
-          titleSpanSecond="FREYR"
-          order={false}
+          titleSpanFirst="FREYR"
+          titleSpanSecond="Hakkında"
+          order={true}
         />
-        <SectionDescription description="Discover the story behind our success." />
+        <SectionDescription description="Başarımızın arkasındaki hikayeyi keşfedin." />
         <div className="flex px-128 mt-16 gap-16">
           <p className="paragraph text-left">
-            Centered on quality, trust, and innovation, FREYR Event & Congress
-            transforms every organization into a prestigious experience. We
-            elevate scientific congresses, corporate events, and exclusive galas
-            to global standards.<br></br>
-            <br></br> We are more than just an operations agency; we are a
-            strategic solution partner for your brand. With our experienced
-            team, we guarantee seamless and end-to-end management. We bring your
-            vision to life and take your brand to new heights.
+            FREYR Event & Congress; etkinlik sektöründe kaliteyi, güveni ve yenilikçi bakış açısını merkezine alan bir organizasyon firmasıdır.
+            Bilimsel kongrelerden kurumsal etkinliklere, özel gala gecelerinden prestijli ödül törenlerine kadar her organizasyonu global standartlara taşıyoruz.<br></br>
+            <br></br> Sadece bir operasyon ajansı değiliz; markanızın stratejik çözüm ortağıyız. Deneyimli ekibimizle kusursuz ve uçtan uca yönetimi garanti ediyoruz. Vizyonunuzu hayata geçiriyor, markanızı zirveye taşıyoruz.
           </p>
           <Image
             src="/images/about.png"
@@ -52,27 +47,27 @@ export default function Home() {
       </div>
       <div id="services" className="mt-36">
         <SectionHeader
-          titleSpanFirst="Our Bespoke"
-          titleSpanSecond="Services"
+          titleSpanFirst="Özel"
+          titleSpanSecond="Hizmetlerimiz"
           order={true}
         />
-        <SectionDescription description="Flawless events tailored to your vision." />
+        <SectionDescription description="Vizyonunuza özel kusursuz etkinlikler." />
         <div className="grid justify-center items-center grid-cols-3 gap-8 pt-16 px-24">
           <ServiceCard
-            title="Congress & Summit Organizations"
-            description="Expert planning for national & international congresses."
+            title="Kongre & Zirve Organizasyonları"
+            description="Ulusal ve uluslararası kongrelerde profesyonel çözüm ortağınız."
             imageSrc="/[service1].svg"
             href="#cta"
           />
           <ServiceCard
-            title="Corporate Events"
-            description="Professional solutions strengthening brand identity."
+            title="Kurumsal Etkinlikler"
+            description="Marka kimliğinizi güçlendiren profesyonel organizasyonlar."
             imageSrc="/[service2].svg"
             href="#cta"
           />
           <ServiceCard
-            title="Gala & Award Ceremonies"
-            description="Flawless planning for prestigious events."
+            title="Gala & Ödül Törenleri"
+            description="Prestijli etkinlikler için kusursuz planlama."
             imageSrc="/[service3].svg"
             href="#cta"
           />
@@ -80,11 +75,11 @@ export default function Home() {
       </div>
       <div className="mt-36">
         <SectionHeader
-          titleSpanFirst="Our Organization"
-          titleSpanSecond="Process"
+          titleSpanFirst="Organizasyon"
+          titleSpanSecond="Sürecimiz"
           order={true}
         />
-        <SectionDescription description="From initial concept to final reporting, we guide you through every stage with precision and care." />
+        <SectionDescription description="İlk konseptten final rapora kadar, her aşamada titizlik ve özenle size rehberlik ediyoruz." />
         <div className="flex justify-center items-center">
           <Image
             src={"/images/process-image.svg"}
@@ -97,11 +92,11 @@ export default function Home() {
       </div>
       <div className="mt-36">
         <SectionHeader
-          titleSpanFirst="Customer"
-          titleSpanSecond="Reviews"
+          titleSpanFirst="Müşteri"
+          titleSpanSecond="Yorumları"
           order={true}
         />
-        <SectionDescription description="Working together is about trust. Here is some honest feedback from our recent projects." />
+        <SectionDescription description="Birlikte çalışmak güven ile ilgilidir. İşte son projelerimizden dürüst geri bildirimler." />
         <ReviewPoints />
         <div className="grid justify-center items-center grid-cols-3 gap-12 pt-16 px-32">
           <ReviewCard
@@ -138,11 +133,11 @@ export default function Home() {
       </div>
       <div className="mt-36">
         <SectionHeader
-          titleSpanFirst="Frequently Asked"
-          titleSpanSecond="Questions"
+          titleSpanFirst="Sıkça Sorulan"
+          titleSpanSecond="Sorular"
           order={true}
         />
-        <SectionDescription description="Answers to your most common questions." />
+        <SectionDescription description="En sık sorulan sorularınıza yanıtlar." />
 
         <div className="faq-div relative w-full aspect-[1240/577] mt-16">
           <Image
@@ -154,25 +149,25 @@ export default function Home() {
           <FAQAccordion
             items={[
               {
-                question: "What scale of events do you manage?",
+                question: "Hangi ölçekte etkinlikleri yönetiyorsunuz?",
                 answer:
-                  "We manage events of all scales, from intimate gatherings to large-scale conferences and international summits.",
+                  "Küçük toplantılardan büyük ölçekli konferanslara ve uluslararası zirvelere kadar her ölçekte etkinlik yönetiyoruz.",
               },
               {
-                question: "How do you ensure the success of an event?",
+                question: "Bir etkinliğin başarısını nasıl garanti ediyorsunuz?",
                 answer:
-                  "Our process involves meticulous planning, attention to detail, and continuous communication with clients to ensure every aspect aligns with their vision.",
+                  "Sürecimiz titiz planlama, detaylara özen ve müşterilerle sürekli iletişim içerir. Her unsurun vizyonlarıyla uyumlu olmasını sağlarız.",
               },
               {
-                question: "Do you offer post-event support?",
+                question: "Etkinlik sonrası destek sunuyor musunuz?",
                 answer:
-                  "Yes, we provide comprehensive post-event support including feedback collection, reporting, and follow-up services to ensure client satisfaction.",
+                  "Evet, müşteri memnuniyetini sağlamak için geri bildirim toplama, raporlama ve takip hizmetleri dahil kapsamlı etkinlik sonrası destek sunuyoruz.",
               },
               {
                 question:
-                  "Can you accommodate special requests or unique requirements?",
+                  "Özel istekleri veya benzersiz gereksinimleri karşılayabiliyor musunuz?",
                 answer:
-                  "Absolutely. We pride ourselves on our flexibility and ability to customize events according to specific client needs and preferences.",
+                  "Kesinlikle. Esnekliğimiz ve etkinlikleri belirli müşteri ihtiyaç ve tercihlerine göre özelleştirme yeteneğimizle gurur duyuyoruz.",
               },
             ]}
           />

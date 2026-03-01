@@ -1,204 +1,299 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-const steps = [
-  {
-    icon: "/Vector(2).svg",
-    label: "Needs Analysis & Goal Setting",
-    row: 0,
-    col: 0,
-  },
-  {
-    icon: "/Vector(3).svg",
-    label: "Concept Design",
-    row: 0,
-    col: 1,
-  },
-  {
-    icon: "/Vector(4).svg",
-    label: "Detailed Planning",
-    row: 0,
-    col: 2,
-  },
-  {
-    icon: "/Vector(5).svg",
-    label: "Operations Management",
-    row: 1,
-    col: 2,
-  },
-  {
-    icon: "/Vector(6).svg",
-    label: "Implementation of the Event",
-    row: 1,
-    col: 1,
-  },
-  {
-    icon: "/Vector(7).svg",
-    label: "Reporting & Evaluation",
-    row: 1,
-    col: 0,
-  },
-];
-
-// The horizontal lines end at the circle centres: 52px from each edge.
-// The connector arcs have their flat edge at that same x position and
-// bulge outward (right arc bulges right, left arc bulges left).
-const CIRCLE_HALF = 52; // px — half of the 104px circle = circle centre offset from edge
-const ARC_WIDTH = 88; // px — natural width of process-scheme1/2 arcs
-
-// SVG paths extracted from process-scheme1.svg and process-scheme2.svg.
-// Both use viewBox "0 0 88 176". We render them inline with preserveAspectRatio="none"
-// so they scale smoothly to any height while keeping the correct arc shape.
-const RIGHT_ARC_PATH = "M0 175C48.0488 175 87 136.049 87 88C87 39.9512 48.0488 1 0 1";
-const LEFT_ARC_PATH =
-  "M88 1C39.9512 0.999996 1.00001 39.9512 1.00001 88C1 136.049 39.9512 175 88 175";
+const MIN_HORIZONTAL_WIDTH = 500;
 
 const ProcessScheme = () => {
-  const row0Ref = useRef<HTMLDivElement>(null);
-  // connectorHeight = height of row-0 div.
-  // The arcs are absolutely positioned starting at top: CIRCLE_HALF (the row-0 circle
-  // centre) and spanning exactly connectorHeight px downward, which lands precisely on
-  // the row-1 circle centre (row-1 starts right after row-0, circle centre = +52px).
-  const [connectorHeight, setConnectorHeight] = useState(176);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
+  const [isVertical, setIsVertical] = useState(false);
 
   useEffect(() => {
     const update = () => {
-      if (row0Ref.current) {
-        setConnectorHeight(row0Ref.current.offsetHeight);
+      if (!wrapperRef.current || !gridRef.current || !svgRef.current) return;
+
+      const availableWidth = wrapperRef.current.clientWidth;
+
+      if (availableWidth < MIN_HORIZONTAL_WIDTH) {
+        setIsVertical(true);
+        drawVerticalConnectors();
+      } else {
+        setIsVertical(false);
+        drawHorizontalConnectors();
       }
     };
+
+    const drawVerticalConnectors = () => {
+      if (!gridRef.current || !svgRef.current) return;
+
+      const wrapperRect = gridRef.current.getBoundingClientRect();
+      svgRef.current.setAttribute(
+        "viewBox",
+        `0 0 ${wrapperRect.width} ${wrapperRect.height}`
+      );
+
+      const steps = gridRef.current.querySelectorAll(".process-step");
+      let d = "";
+
+      for (let i = 0; i < steps.length - 1; i++) {
+        const step1 = steps[i] as HTMLElement;
+        const step2 = steps[i + 1] as HTMLElement;
+        const circle2 = step2.querySelector(".step-circle") as HTMLElement;
+
+        const r1 = step1.getBoundingClientRect();
+        const r2 = circle2.getBoundingClientRect();
+
+        const x = r2.left + r2.width / 2 - wrapperRect.left;
+        const y1 = r1.top + r1.height - wrapperRect.top;
+        const y2 = r2.top - wrapperRect.top;
+
+        d += `<line x1="${x}" y1="${y1}" x2="${x}" y2="${y2}"/>`;
+      }
+
+      svgRef.current.innerHTML = d;
+    };
+
+    const drawHorizontalConnectors = () => {
+      if (!wrapperRef.current || !svgRef.current) return;
+
+      const wrapperRect = wrapperRef.current.getBoundingClientRect();
+      const w = wrapperRect.width;
+      const h = wrapperRect.height;
+      svgRef.current.setAttribute("viewBox", `0 0 ${w} ${h}`);
+
+      const getCircle = (id: string) => {
+        const el = document.getElementById(id)?.querySelector(".step-circle") as HTMLElement;
+        if (!el) return { cx: 0, cy: 0, r: 0 };
+        const r = el.getBoundingClientRect();
+        return {
+          cx: r.left + r.width / 2 - wrapperRect.left,
+          cy: r.top + r.height / 2 - wrapperRect.top,
+          r: r.width / 2,
+        };
+      };
+
+      const s1 = getCircle("step1");
+      const s2 = getCircle("step2");
+      const s3 = getCircle("step3");
+      const s4 = getCircle("step4");
+      const s5 = getCircle("step5");
+      const s6 = getCircle("step6");
+
+      let d = "";
+
+      // ROW 1: Step1 → Step2 → Step3
+      d += `<line x1="${s1.cx + s1.r}" y1="${s1.cy}" x2="${s2.cx - s2.r}" y2="${s2.cy}"/>`;
+      d += `<line x1="${s2.cx + s2.r}" y1="${s2.cy}" x2="${s3.cx - s3.r}" y2="${s3.cy}"/>`;
+
+      // S-CONNECTOR: Step3 → Step4
+      const arcR = (s4.cy - s3.cy) / 4;
+      const startX = s3.cx + s3.r;
+      const startY = s3.cy;
+      const endX = s4.cx - s4.r;
+      const endY = s4.cy;
+      const arc1EndY = startY + 2 * arcR;
+      const arc2StartY = endY - 2 * arcR;
+
+      d += `<path d="M ${startX} ${startY} A ${arcR} ${arcR} 0 0 1 ${startX} ${arc1EndY} L ${endX} ${arc2StartY} A ${arcR} ${arcR} 0 0 0 ${endX} ${endY}"/>`;
+
+      // ROW 2: Step4 → Step5 → Step6
+      d += `<line x1="${s4.cx + s4.r}" y1="${s4.cy}" x2="${s5.cx - s5.r}" y2="${s5.cy}"/>`;
+      d += `<line x1="${s5.cx + s5.r}" y1="${s5.cy}" x2="${s6.cx - s6.r}" y2="${s6.cy}"/>`;
+
+      svgRef.current.innerHTML = d;
+    };
+
     update();
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
   }, []);
 
-  const row0 = steps.filter((s) => s.row === 0).sort((a, b) => a.col - b.col);
-  const row1 = steps.filter((s) => s.row === 1).sort((a, b) => b.col - a.col);
-
-  // The arc SVG is 88px wide. Its flat edge sits at x=0 (right arc) or x=88 (left arc).
-  // We want that flat edge aligned with the horizontal line endpoint (CIRCLE_HALF from each side).
-  // right arc  → right: -(ARC_WIDTH - CIRCLE_HALF) = -36  (bulges 36px into the padding)
-  // left arc   → left:  -(ARC_WIDTH - CIRCLE_HALF) = -36  (bulges 36px into the padding)
-  const arcOffset = -(ARC_WIDTH - CIRCLE_HALF); // -36px
-
-  const arcStyle = (side: "right" | "left"): React.CSSProperties => ({
-    position: "absolute",
-    top: CIRCLE_HALF,
-    [side]: arcOffset,
-    width: ARC_WIDTH,
-    height: connectorHeight,
-    zIndex: 0,
-    overflow: "visible",
-  });
-
   return (
-    <div className="w-full px-24 py-16">
-      <div className="relative">
-        {/* Row 1: left → right */}
-        <div
-          ref={row0Ref}
-          className="relative flex items-start justify-between"
-        >
-          {/* Horizontal connector line — 2px to match the SVG stroke-width */}
-          <div className="absolute top-[52px] left-[52px] right-[52px] h-[2px] bg-[#D2AD7A]" />
-          {row0.map((step, i) => (
-            <div
-              key={i}
-              className="relative flex flex-col items-center gap-4 z-10"
-            >
-              <div className="w-[104px] h-[104px] rounded-full bg-[#1a1a1a] border border-[#D2AD7A]/30 flex items-center justify-center">
-                <Image
-                  src={step.icon}
-                  alt={step.label}
-                  width={48}
-                  height={48}
-                />
-              </div>
-              <span className="text-sm text-white text-center max-w-[140px]">
-                {step.label}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        {/* Row 2: right → left (reversed visually) */}
-        <div className="relative flex items-start justify-between">
-          {/* Horizontal connector line */}
-          <div className="absolute top-[52px] left-[52px] right-[52px] h-[2px] bg-[#D2AD7A]" />
-          {row1.map((step, i) => (
-            <div
-              key={i}
-              className="relative flex flex-col items-center gap-4 z-10"
-            >
-              <div className="w-[104px] h-[104px] rounded-full bg-[#1a1a1a] border border-[#D2AD7A]/30 flex items-center justify-center">
-                <Image
-                  src={step.icon}
-                  alt={step.label}
-                  width={48}
-                  height={48}
-                />
-              </div>
-              <span className="text-sm text-white text-center max-w-[140px]">
-                {step.label}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        {/*
-          Right arc connector (process-scheme1 path):
-            - Flat edge at x=0, arc bulges right
-            - Positioned so flat edge aligns with the right end of the horizontal lines
-        */}
-        <svg
-          viewBox="0 0 88 176"
-          preserveAspectRatio="none"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          style={arcStyle("right")}
-        >
-          <path d={RIGHT_ARC_PATH} stroke="#D2AD7A" strokeWidth="2" />
-        </svg>
-
-        {/*
-          Left arc connector (process-scheme2 path):
-            - Flat edge at x=88, arc bulges left
-            - Positioned so flat edge aligns with the left end of the horizontal lines
-        */}
-        <svg
-          viewBox="0 0 88 176"
-          preserveAspectRatio="none"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          style={arcStyle("left")}
-        >
-          <path d={LEFT_ARC_PATH} stroke="#D2AD7A" strokeWidth="2" />
-        </svg>
-
-        {/*
-          Middle straight line:
-          The path flows as a "story": row-0 line → right arc down → middle line left
-          → left arc up → row-1 line.
-          The right arc's bottom-most tip (where it transitions direction) is at y=88/176
-          = 50% of the arc height = top: CIRCLE_HALF + connectorHeight/2.
-          The left arc's top-most tip is at the same y.
-          Both tips are at the outermost horizontal extent of each arc (x = ARC_WIDTH from
-          each edge), so the line runs between them at that exact vertical midpoint.
-        */}
-        <div
-          style={{
-            position: "absolute",
-            top: CIRCLE_HALF  + connectorHeight,
-            left: arcOffset,
-            right: arcOffset,
-            height: 2,
-            backgroundColor: "#D2AD7A",
-          }}
-        />
+    <section className="w-full max-w-[1200px] mx-auto px-5 py-12">
+      <div className="text-center mb-12">
+        <h1 className="text-4xl md:text-[2.4rem] font-bold mb-3.5 tracking-wide">
+          Our Organization <em className="italic text-[#D2AD7A]">Process</em>
+        </h1>
+        <p className="text-sm text-[#888888] font-light tracking-wide">
+          From initial concept to final reporting, we guide you through every
+          stage with precision and care.
+        </p>
       </div>
-    </div>
+
+      <div
+        ref={wrapperRef}
+        className="relative w-full max-w-[1125px] mx-auto overflow-visible"
+      >
+        <svg
+          ref={svgRef}
+          className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-visible"
+          style={{ zIndex: 0 }}
+        >
+          <style>{`
+            .process-svg path,
+            .process-svg line {
+              fill: none;
+              stroke: #D2AD7A;
+              stroke-width: 2;
+            }
+          `}</style>
+        </svg>
+
+        <div
+          ref={gridRef}
+          className={`relative ${
+            isVertical
+              ? "grid grid-cols-1 justify-center"
+              : "grid grid-cols-3 justify-between gap-y-[130px]"
+          }`}
+          style={{ zIndex: 1 }}
+        >
+          {/* Step 1 */}
+          <div
+            id="step1"
+            className={`process-step flex flex-col items-center text-center ${
+              isVertical ? "py-4" : "py-2"
+            }`}
+          >
+            <div className="step-circle w-[111px] h-[111px] rounded-full border-2 border-[#282828] bg-[#161616] flex items-center justify-center mb-3.5 flex-shrink-0">
+              <svg viewBox="0 0 24 24" className="w-[46px] h-[46px]">
+                <circle cx="12" cy="12" r="9" />
+                <circle cx="12" cy="12" r="5" />
+                <circle cx="12" cy="12" r="1.5" />
+                <line x1="12" y1="3" x2="12" y2="6" />
+                <line x1="12" y1="18" x2="12" y2="21" />
+                <line x1="3" y1="12" x2="6" y2="12" />
+                <line x1="18" y1="12" x2="21" y2="12" />
+                <line x1="17" y1="3" x2="21" y2="3" />
+                <line x1="21" y1="3" x2="21" y2="7" />
+                <line x1="21" y1="3" x2="16" y2="8" />
+              </svg>
+            </div>
+            <span className="text-lg text-white leading-[1.45] max-w-[220px]">
+              Needs Analysis & Goal Setting
+            </span>
+          </div>
+
+          {/* Step 2 */}
+          <div
+            id="step2"
+            className={`process-step flex flex-col items-center text-center ${
+              isVertical ? "py-4" : "py-2"
+            }`}
+          >
+            <div className="step-circle w-[111px] h-[111px] rounded-full border-2 border-[#282828] bg-[#161616] flex items-center justify-center mb-3.5 flex-shrink-0">
+              <svg viewBox="0 0 24 24" className="w-[46px] h-[46px]">
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+                <polyline points="9 15 11 17 15 13" />
+              </svg>
+            </div>
+            <span className="text-lg text-white leading-[1.45] max-w-[220px]">
+              Concept Design
+            </span>
+          </div>
+
+          {/* Step 3 */}
+          <div
+            id="step3"
+            className={`process-step flex flex-col items-center text-center ${
+              isVertical ? "py-4" : "py-2"
+            }`}
+          >
+            <div className="step-circle w-[111px] h-[111px] rounded-full border-2 border-[#282828] bg-[#161616] flex items-center justify-center mb-3.5 flex-shrink-0">
+              <svg viewBox="0 0 24 24" className="w-[46px] h-[46px]">
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <line x1="3" y1="8" x2="21" y2="8" />
+                <line x1="3" y1="13" x2="21" y2="13" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+                <line x1="8" y1="3" x2="8" y2="21" />
+                <line x1="13" y1="3" x2="13" y2="21" />
+                <line x1="18" y1="3" x2="18" y2="21" />
+              </svg>
+            </div>
+            <span className="text-lg text-white leading-[1.45] max-w-[220px]">
+              Detailed Planning
+            </span>
+          </div>
+
+          {/* Step 4 */}
+          <div
+            id="step4"
+            className={`process-step flex flex-col items-center text-center ${
+              isVertical ? "py-4" : "py-2"
+            }`}
+          >
+            <div className="step-circle w-[111px] h-[111px] rounded-full border-2 border-[#282828] bg-[#161616] flex items-center justify-center mb-3.5 flex-shrink-0">
+              <svg viewBox="0 0 24 24" className="w-[46px] h-[46px]">
+                <circle cx="12" cy="12" r="3" />
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+              </svg>
+            </div>
+            <span className="text-lg text-white leading-[1.45] max-w-[220px]">
+              Operations Management
+            </span>
+          </div>
+
+          {/* Step 5 */}
+          <div
+            id="step5"
+            className={`process-step flex flex-col items-center text-center ${
+              isVertical ? "py-4" : "py-2"
+            }`}
+          >
+            <div className="step-circle w-[111px] h-[111px] rounded-full border-2 border-[#282828] bg-[#161616] flex items-center justify-center mb-3.5 flex-shrink-0">
+              <svg viewBox="0 0 24 24" className="w-[46px] h-[46px]">
+                <rect x="5" y="6" width="14" height="14" rx="2" />
+                <polygon points="12 9 13.5 12 17 12.5 14.5 14.5 15 18 12 16.5 9 18 9.5 14.5 7 12.5 10.5 12" />
+              </svg>
+            </div>
+            <span className="text-lg text-white leading-[1.45] max-w-[220px]">
+              Implementation of the Event
+            </span>
+          </div>
+
+          {/* Step 6 */}
+          <div
+            id="step6"
+            className={`process-step flex flex-col items-center text-center ${
+              isVertical ? "py-4" : "py-2"
+            }`}
+          >
+            <div className="step-circle w-[111px] h-[111px] rounded-full border-2 border-[#282828] bg-[#161616] flex items-center justify-center mb-3.5 flex-shrink-0">
+              <svg viewBox="0 0 24 24" className="w-[46px] h-[46px]">
+                <rect x="5" y="2" width="14" height="20" rx="2" />
+                <line x1="9" y1="6" x2="15" y2="6" />
+                <line x1="9" y1="10" x2="15" y2="10" />
+                <line x1="9" y1="14" x2="15" y2="14" />
+                <line x1="9" y1="18" x2="13" y2="18" />
+              </svg>
+            </div>
+            <span className="text-lg text-white leading-[1.45] max-w-[220px]">
+              Reporting & Evaluation
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        svg path,
+        svg line,
+        svg circle,
+        svg rect,
+        svg polyline,
+        svg polygon {
+          stroke: #d2ad7a;
+          fill: none;
+          stroke-width: 1.3;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+      `}</style>
+    </section>
   );
 };
 

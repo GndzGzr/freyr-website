@@ -6,11 +6,10 @@ const CTASection = () => {
       {/* spotlight glow */}
       <div className="cta-glow" />
       <h2 className="gradient-golden-text cta-header text-center font-serif italic relative z-10">
-        Ready to Elevate Your Next Event?
+        Bir Sonraki Etkinliğinizi Zirveye Taşımaya Hazır mısınız?
       </h2>
       <p className="cta-description text-center relative z-10">
-        Let&apos;s discuss how we can bring your vision to life with our signature
-        touch of excellence and precision.
+        Vizyonunuzu mükemmellik ve hassasiyet dokunuşumuzla hayata nasıl geçirebileceğimizi konuşalım.
       </p>
       <div className="relative z-10">
         <CFAButton />

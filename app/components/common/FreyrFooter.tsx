@@ -26,7 +26,7 @@ const FreyrFooter = () => {
                         {/* Contact Person */}
                         <div className="flex flex-col gap-1">
                             <p className="font-semibold text-lg text-[var(--light-font)]">Ufuk Kanburoğlu</p>
-                            <p className="text-md text-[var(--passive-dark-color)]">General Manager</p>
+                            <p className="text-md text-[var(--passive-dark-color)]">Genel Müdür</p>
                         </div>
 
                         {/* Contact Details */}
@@ -48,19 +48,19 @@ const FreyrFooter = () => {
 
                     {/* Right: Quick Links */}
                     <div className="flex flex-col gap-4">
-                        <p className="font-semibold text-md text-[var(--golden-background)]">Quick Links</p>
+                        <p className="font-semibold text-md text-[var(--golden-background)]">Hızlı Bağlantılar</p>
                         <nav className="flex flex-col gap-3">
-                            <a href="/" className="text-md text-[var(--light-font)] hover:text-[var(--golden-background)] transition-colors">Home</a>
-                            <a href="/services" className="text-md text-[var(--light-font)] hover:text-[var(--golden-background)] transition-colors">Services</a>
-                            <a href="/about" className="text-md text-[var(--light-font)] hover:text-[var(--golden-background)] transition-colors">About Us</a>
-                            <a href="/contact" className="text-md text-[var(--light-font)] hover:text-[var(--golden-background)] transition-colors">Contact</a>
+                            <a href="/" className="text-md text-[var(--light-font)] hover:text-[var(--golden-background)] transition-colors">Ana Sayfa</a>
+                            <a href="/services" className="text-md text-[var(--light-font)] hover:text-[var(--golden-background)] transition-colors">Hizmetler</a>
+                            <a href="/about" className="text-md text-[var(--light-font)] hover:text-[var(--golden-background)] transition-colors">Hakkımızda</a>
+                            <a href="/contact" className="text-md text-[var(--light-font)] hover:text-[var(--golden-background)] transition-colors">İletişim</a>
                         </nav>
                     </div>
                 </div>
 
                 {/* Follow Us */}
                 <div className="flex flex-col items-center gap-5 pt-8">
-                    <p className="font-semibold text-md text-[var(--golden-background)]">Follow Us</p>
+                    <p className="font-semibold text-md text-[var(--golden-background)]">Bizi Takip Edin</p>
                     <div className="flex items-center gap-4">
                         <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer"
                             className="w-10 h-10 rounded-full border border-[var(--golden-background)] flex items-center justify-center text-[var(--golden-background)] hover:bg-[var(--golden-background)] hover:text-black transition-colors">
