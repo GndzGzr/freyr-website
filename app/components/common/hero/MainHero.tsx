@@ -5,8 +5,8 @@ import CFAButtonSecondaryLarger from "./CFAButtonSecondaryLarger";
 
 const MainHero = ({ spanFirst, spanSecond }: { spanFirst: string; spanSecond: string }) => {
   return (
-          <div className="px-24 pt-8">
-        <div className="relative w-full aspect-[1240/577]">
+          <div className="px-4 md:px-12 lg:px-24 pt-4 md:pt-8">
+        <div className="relative w-full aspect-[3/4] sm:aspect-[16/9] lg:aspect-[1240/577]">
           <Image
             src="/images/hero.png"
             alt="Hero Image"
@@ -22,7 +22,7 @@ const MainHero = ({ spanFirst, spanSecond }: { spanFirst: string; spanSecond: st
               spanFirst={spanFirst}
               spanSecond={spanSecond}
             />
-            <div className="flex gap-16 pt-36">
+            <div className="flex flex-col md:flex-row items-center gap-3 md:gap-8 lg:gap-16 pt-4 sm:pt-8 md:pt-16 lg:pt-36 px-4">
               <CFAButtonLarger />
               <CFAButtonSecondaryLarger />
             </div>

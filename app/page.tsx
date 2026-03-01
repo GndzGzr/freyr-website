@@ -24,16 +24,16 @@ export default function Home() {
         spanFirst="Prestijli Organizasyonlar. Kusursuz Deneyimler."
         spanSecond="Global Standartlar."
       />
-      <div className="mt-4">
+      <div id="about" className="mt-8 md:mt-4">
         <SectionHeader
           titleSpanFirst="FREYR"
           titleSpanSecond="Hakkında"
           order={true}
         />
         <SectionDescription description="Başarımızın arkasındaki hikayeyi keşfedin." />
-        <div className="flex px-128 mt-16 gap-16">
+        <div className="flex flex-col md:flex-row px-6 md:px-16 lg:px-32 mt-8 md:mt-16 gap-8 md:gap-16">
           <p className="paragraph text-left">
-            FREYR Event & Congress; etkinlik sektöründe kaliteyi, güveni ve yenilikçi bakış açısını merkezine alan bir organizasyon firmasıdır.
+            FREYR Event &amp; Congress; etkinlik sektöründe kaliteyi, güveni ve yenilikçi bakış açısını merkezine alan bir organizasyon firmasıdır.
             Bilimsel kongrelerden kurumsal etkinliklere, özel gala gecelerinden prestijli ödül törenlerine kadar her organizasyonu global standartlara taşıyoruz.<br></br>
             <br></br> Sadece bir operasyon ajansı değiliz; markanızın stratejik çözüm ortağıyız. Deneyimli ekibimizle kusursuz ve uçtan uca yönetimi garanti ediyoruz. Vizyonunuzu hayata geçiriyor, markanızı zirveye taşıyoruz.
           </p>
@@ -42,19 +42,20 @@ export default function Home() {
             width={400}
             height={384}
             alt="About Freyr"
+            className="w-full md:w-auto max-w-[400px] mx-auto md:mx-0 h-auto"
           />
         </div>
       </div>
-      <div id="services" className="mt-36">
+      <div id="services" className="mt-16 md:mt-24 lg:mt-36">
         <SectionHeader
           titleSpanFirst="Özel"
           titleSpanSecond="Hizmetlerimiz"
           order={true}
         />
         <SectionDescription description="Vizyonunuza özel kusursuz etkinlikler." />
-        <div className="grid justify-center items-center grid-cols-3 gap-8 pt-16 px-24">
+        <div className="grid justify-center items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 pt-8 md:pt-16 px-6 md:px-12 lg:px-16">
           <ServiceCard
-            title="Kongre & Zirve Organizasyonları"
+            title="Kongre &amp; Zirve Organizasyonları"
             description="Ulusal ve uluslararası kongrelerde profesyonel çözüm ortağınız."
             imageSrc="/[service1].svg"
             href="#cta"
@@ -66,31 +67,23 @@ export default function Home() {
             href="#cta"
           />
           <ServiceCard
-            title="Gala & Ödül Törenleri"
+            title="Gala &amp; Ödül Törenleri"
             description="Prestijli etkinlikler için kusursuz planlama."
             imageSrc="/[service3].svg"
             href="#cta"
           />
         </div>
       </div>
-      <div className="mt-36">
+      <div className="mt-16 md:mt-24 lg:mt-36">
         <SectionHeader
           titleSpanFirst="Organizasyon"
           titleSpanSecond="Sürecimiz"
           order={true}
         />
         <SectionDescription description="İlk konseptten final rapora kadar, her aşamada titizlik ve özenle size rehberlik ediyoruz." />
-        <div className="flex justify-center items-center">
-          <Image
-            src={"/images/process-image.svg"}
-            alt="Process"
-            width={1200}
-            height={600}
-            className="h-auto mt-16"
-          />
-        </div>
+        <ProcessScheme />
       </div>
-      <div className="mt-36">
+      <div className="mt-16 md:mt-24 lg:mt-36">
         <SectionHeader
           titleSpanFirst="Müşteri"
           titleSpanSecond="Yorumları"
@@ -98,7 +91,7 @@ export default function Home() {
         />
         <SectionDescription description="Birlikte çalışmak güven ile ilgilidir. İşte son projelerimizden dürüst geri bildirimler." />
         <ReviewPoints />
-        <div className="grid justify-center items-center grid-cols-3 gap-12 pt-16 px-32">
+        <div className="grid justify-center items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12 pt-8 md:pt-16 px-6 md:px-12 lg:px-16">
           <ReviewCard
             review={{
               name: "Dr. Selin Arslan",
@@ -114,7 +107,7 @@ export default function Home() {
               name: "Marcus Weber",
               role: "Marketing Director",
               feedback:
-                "We wanted a statement, not just an event. They understood our brand instantly and delivered a breathtaking design. They don’t just execute; they elevate.",
+                "We wanted a statement, not just an event. They understood our brand instantly and delivered a breathtaking design. They don't just execute; they elevate.",
               point: 4,
               imageURL: "/images/profile2.png",
             }}
@@ -131,7 +124,7 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="mt-36">
+      <div className="mt-16 md:mt-24 lg:mt-36">
         <SectionHeader
           titleSpanFirst="Sıkça Sorulan"
           titleSpanSecond="Sorular"
@@ -139,12 +132,12 @@ export default function Home() {
         />
         <SectionDescription description="En sık sorulan sorularınıza yanıtlar." />
 
-        <div className="faq-div relative w-full aspect-[1240/577] mt-16">
+        <div className="faq-div relative w-full aspect-[1240/577] mt-8 md:mt-16">
           <Image
             src="/faq-bg.svg"
             alt="faq"
             fill
-            className="object-cover px-48"
+            className="object-cover px-4 md:px-16 lg:px-48"
           />
           <FAQAccordion
             items={[
@@ -173,10 +166,10 @@ export default function Home() {
           />
         </div>
       </div>
-      <div id="#cta" className="mt-36 px-24">
+      <div id="cta" className="mt-16 md:mt-24 lg:mt-36 px-6 md:px-12 lg:px-16">
         <CTASection />
       </div>
-      <div className="mt-36">
+      <div id="contact" className="mt-16 md:mt-24 lg:mt-36">
         <FreyrFooter />
       </div>
     </div>

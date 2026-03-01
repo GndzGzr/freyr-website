@@ -2,7 +2,7 @@ import CFAButton from "./common/CFAButton";
 
 const CTASection = () => {
   return (
-    <div className="cta-section relative flex flex-col items-center gap-8 py-24 overflow-hidden">
+    <div className="cta-section relative flex flex-col items-center gap-6 md:gap-8 py-12 md:py-24 px-4 md:px-8 overflow-hidden">
       {/* spotlight glow */}
       <div className="cta-glow" />
       <h2 className="gradient-golden-text cta-header text-center font-serif italic relative z-10">

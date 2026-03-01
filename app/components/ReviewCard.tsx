@@ -11,12 +11,12 @@ const ReviewCard = ({
   };
 }) => {
   return (
-    <div className="service-card p-12 rounded-lg shadow-md flex flex-col w-full h-full">
-      <div className="flex flex-row gap-12 mb-12 items-center">
+    <div className="service-card p-6 md:p-8 lg:p-12 rounded-lg shadow-md flex flex-col w-full h-full">
+      <div className="flex flex-row gap-4 md:gap-8 lg:gap-12 mb-4 md:mb-8 lg:mb-12 items-center">
         <img
           src={review.imageURL}
           alt={review.name}
-          className="w-32 h-32 rounded-full mb-4"
+          className="w-16 h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 rounded-full mb-0 md:mb-4 shrink-0"
         />
         <div className="">
           <p className="service-card-text-header mb-2">{review.name}</p>

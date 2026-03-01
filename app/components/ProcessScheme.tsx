@@ -1,61 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-
-const MIN_HORIZONTAL_WIDTH = 500;
+import { useEffect, useRef } from "react";
 
 const ProcessScheme = () => {
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
-  const [isVertical, setIsVertical] = useState(false);
 
   useEffect(() => {
-    const update = () => {
-      if (!wrapperRef.current || !gridRef.current || !svgRef.current) return;
-
-      const availableWidth = wrapperRef.current.clientWidth;
-
-      if (availableWidth < MIN_HORIZONTAL_WIDTH) {
-        setIsVertical(true);
-        drawVerticalConnectors();
-      } else {
-        setIsVertical(false);
-        drawHorizontalConnectors();
-      }
-    };
-
-    const drawVerticalConnectors = () => {
-      if (!gridRef.current || !svgRef.current) return;
-
-      const wrapperRect = gridRef.current.getBoundingClientRect();
-      svgRef.current.setAttribute(
-        "viewBox",
-        `0 0 ${wrapperRect.width} ${wrapperRect.height}`
-      );
-
-      const steps = gridRef.current.querySelectorAll(".process-step");
-      let d = "";
-
-      for (let i = 0; i < steps.length - 1; i++) {
-        const step1 = steps[i] as HTMLElement;
-        const step2 = steps[i + 1] as HTMLElement;
-        const circle2 = step2.querySelector(".step-circle") as HTMLElement;
-
-        const r1 = step1.getBoundingClientRect();
-        const r2 = circle2.getBoundingClientRect();
-
-        const x = r2.left + r2.width / 2 - wrapperRect.left;
-        const y1 = r1.top + r1.height - wrapperRect.top;
-        const y2 = r2.top - wrapperRect.top;
-
-        d += `<line x1="${x}" y1="${y1}" x2="${x}" y2="${y2}"/>`;
-      }
-
-      svgRef.current.innerHTML = d;
-    };
-
-    const drawHorizontalConnectors = () => {
+    const drawConnectors = () => {
       if (!wrapperRef.current || !svgRef.current) return;
 
       const wrapperRect = wrapperRef.current.getBoundingClientRect();
@@ -84,8 +36,8 @@ const ProcessScheme = () => {
       let d = "";
 
       // ROW 1: Step1 → Step2 → Step3
-      d += `<line x1="${s1.cx + s1.r}" y1="${s1.cy}" x2="${s2.cx - s2.r}" y2="${s2.cy}"/>`;
-      d += `<line x1="${s2.cx + s2.r}" y1="${s2.cy}" x2="${s3.cx - s3.r}" y2="${s3.cy}"/>`;
+      d += `<line x1="${s1.cx + s1.r}" y1="${s1.cy}" x2="${s2.cx - s2.r}" y2="${s2.cy}" stroke="#D2AD7A" stroke-width="2" fill="none"/>`;
+      d += `<line x1="${s2.cx + s2.r}" y1="${s2.cy}" x2="${s3.cx - s3.r}" y2="${s3.cy}" stroke="#D2AD7A" stroke-width="2" fill="none"/>`;
 
       // S-CONNECTOR: Step3 → Step4
       const arcR = (s4.cy - s3.cy) / 4;
@@ -96,31 +48,29 @@ const ProcessScheme = () => {
       const arc1EndY = startY + 2 * arcR;
       const arc2StartY = endY - 2 * arcR;
 
-      d += `<path d="M ${startX} ${startY} A ${arcR} ${arcR} 0 0 1 ${startX} ${arc1EndY} L ${endX} ${arc2StartY} A ${arcR} ${arcR} 0 0 0 ${endX} ${endY}"/>`;
+      d += `<path d="M ${startX} ${startY} A ${arcR} ${arcR} 0 0 1 ${startX} ${arc1EndY} L ${endX} ${arc2StartY} A ${arcR} ${arcR} 0 0 0 ${endX} ${endY}" stroke="#D2AD7A" stroke-width="2" fill="none"/>`;
 
       // ROW 2: Step4 → Step5 → Step6
-      d += `<line x1="${s4.cx + s4.r}" y1="${s4.cy}" x2="${s5.cx - s5.r}" y2="${s5.cy}"/>`;
-      d += `<line x1="${s5.cx + s5.r}" y1="${s5.cy}" x2="${s6.cx - s6.r}" y2="${s6.cy}"/>`;
+      d += `<line x1="${s4.cx + s4.r}" y1="${s4.cy}" x2="${s5.cx - s5.r}" y2="${s5.cy}" stroke="#D2AD7A" stroke-width="2" fill="none"/>`;
+      d += `<line x1="${s5.cx + s5.r}" y1="${s5.cy}" x2="${s6.cx - s6.r}" y2="${s6.cy}" stroke="#D2AD7A" stroke-width="2" fill="none"/>`;
 
       svgRef.current.innerHTML = d;
     };
 
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
+    // Use requestAnimationFrame to ensure layout is fully settled before measuring
+    const rafId = requestAnimationFrame(() => {
+      setTimeout(drawConnectors, 100);
+    });
+
+    window.addEventListener("resize", drawConnectors);
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", drawConnectors);
+    };
   }, []);
 
   return (
     <section className="w-full max-w-[1200px] mx-auto px-5 py-12">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-[2.4rem] font-bold mb-3.5 tracking-wide">
-          Our Organization <em className="italic text-[#D2AD7A]">Process</em>
-        </h1>
-        <p className="text-sm text-[#888888] font-light tracking-wide">
-          From initial concept to final reporting, we guide you through every
-          stage with precision and care.
-        </p>
-      </div>
 
       <div
         ref={wrapperRef}
@@ -131,31 +81,16 @@ const ProcessScheme = () => {
           className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-visible"
           style={{ zIndex: 0 }}
         >
-          <style>{`
-            .process-svg path,
-            .process-svg line {
-              fill: none;
-              stroke: #D2AD7A;
-              stroke-width: 2;
-            }
-          `}</style>
         </svg>
 
         <div
-          ref={gridRef}
-          className={`relative ${
-            isVertical
-              ? "grid grid-cols-1 justify-center"
-              : "grid grid-cols-3 justify-between gap-y-[130px]"
-          }`}
+          className="relative grid grid-cols-3 justify-between gap-y-[130px]"
           style={{ zIndex: 1 }}
         >
           {/* Step 1 */}
           <div
             id="step1"
-            className={`process-step flex flex-col items-center text-center ${
-              isVertical ? "py-4" : "py-2"
-            }`}
+            className="process-step flex flex-col items-center text-center py-2"
           >
             <div className="step-circle w-[111px] h-[111px] rounded-full border-2 border-[#282828] bg-[#161616] flex items-center justify-center mb-3.5 flex-shrink-0">
               <svg viewBox="0 0 24 24" className="w-[46px] h-[46px]">
@@ -179,9 +114,7 @@ const ProcessScheme = () => {
           {/* Step 2 */}
           <div
             id="step2"
-            className={`process-step flex flex-col items-center text-center ${
-              isVertical ? "py-4" : "py-2"
-            }`}
+            className="process-step flex flex-col items-center text-center py-2"
           >
             <div className="step-circle w-[111px] h-[111px] rounded-full border-2 border-[#282828] bg-[#161616] flex items-center justify-center mb-3.5 flex-shrink-0">
               <svg viewBox="0 0 24 24" className="w-[46px] h-[46px]">
@@ -200,9 +133,7 @@ const ProcessScheme = () => {
           {/* Step 3 */}
           <div
             id="step3"
-            className={`process-step flex flex-col items-center text-center ${
-              isVertical ? "py-4" : "py-2"
-            }`}
+            className="process-step flex flex-col items-center text-center py-2"
           >
             <div className="step-circle w-[111px] h-[111px] rounded-full border-2 border-[#282828] bg-[#161616] flex items-center justify-center mb-3.5 flex-shrink-0">
               <svg viewBox="0 0 24 24" className="w-[46px] h-[46px]">
@@ -223,9 +154,7 @@ const ProcessScheme = () => {
           {/* Step 4 */}
           <div
             id="step4"
-            className={`process-step flex flex-col items-center text-center ${
-              isVertical ? "py-4" : "py-2"
-            }`}
+            className="process-step flex flex-col items-center text-center py-2"
           >
             <div className="step-circle w-[111px] h-[111px] rounded-full border-2 border-[#282828] bg-[#161616] flex items-center justify-center mb-3.5 flex-shrink-0">
               <svg viewBox="0 0 24 24" className="w-[46px] h-[46px]">
@@ -241,9 +170,7 @@ const ProcessScheme = () => {
           {/* Step 5 */}
           <div
             id="step5"
-            className={`process-step flex flex-col items-center text-center ${
-              isVertical ? "py-4" : "py-2"
-            }`}
+            className="process-step flex flex-col items-center text-center py-2"
           >
             <div className="step-circle w-[111px] h-[111px] rounded-full border-2 border-[#282828] bg-[#161616] flex items-center justify-center mb-3.5 flex-shrink-0">
               <svg viewBox="0 0 24 24" className="w-[46px] h-[46px]">
@@ -259,9 +186,7 @@ const ProcessScheme = () => {
           {/* Step 6 */}
           <div
             id="step6"
-            className={`process-step flex flex-col items-center text-center ${
-              isVertical ? "py-4" : "py-2"
-            }`}
+            className="process-step flex flex-col items-center text-center py-2"
           >
             <div className="step-circle w-[111px] h-[111px] rounded-full border-2 border-[#282828] bg-[#161616] flex items-center justify-center mb-3.5 flex-shrink-0">
               <svg viewBox="0 0 24 24" className="w-[46px] h-[46px]">
