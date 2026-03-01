@@ -5,7 +5,7 @@ import CFAButtonSecondaryLarger from "./CFAButtonSecondaryLarger";
 
 const MainHero = ({ spanFirst, spanSecond }: { spanFirst: string; spanSecond: string }) => {
   return (
-          <div className="px-4 md:px-12 lg:px-24 pt-4 md:pt-8">
+          <div className="px-4 md:px-12 lg:px-24 pt-8 md:pt-8">
         <div className="relative w-full aspect-[3/4] sm:aspect-[16/9] lg:aspect-[1240/577]">
           <Image
             src="/images/hero.png"

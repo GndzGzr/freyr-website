@@ -24,6 +24,8 @@ export default function Home() {
         spanFirst="Prestijli Organizasyonlar. Kusursuz Deneyimler."
         spanSecond="Global Standartlar."
       />
+
+      {/* ABOUT SECTION — narrower container */}
       <div id="about" className="mt-8 md:mt-4">
         <SectionHeader
           titleSpanFirst="FREYR"
@@ -31,7 +33,7 @@ export default function Home() {
           order={true}
         />
         <SectionDescription description="Başarımızın arkasındaki hikayeyi keşfedin." />
-        <div className="flex flex-col md:flex-row px-6 md:px-16 lg:px-32 mt-8 md:mt-16 gap-8 md:gap-16">
+        <div className="max-w-4xl mx-auto flex flex-col md:flex-row px-6 md:px-8 mt-8 md:mt-16 gap-8 md:gap-12">
           <p className="paragraph text-left">
             FREYR Event &amp; Congress; etkinlik sektöründe kaliteyi, güveni ve yenilikçi bakış açısını merkezine alan bir organizasyon firmasıdır.
             Bilimsel kongrelerden kurumsal etkinliklere, özel gala gecelerinden prestijli ödül törenlerine kadar her organizasyonu global standartlara taşıyoruz.<br></br>
@@ -46,6 +48,8 @@ export default function Home() {
           />
         </div>
       </div>
+
+      {/* SERVICES SECTION */}
       <div id="services" className="mt-16 md:mt-24 lg:mt-36">
         <SectionHeader
           titleSpanFirst="Özel"
@@ -53,7 +57,7 @@ export default function Home() {
           order={true}
         />
         <SectionDescription description="Vizyonunuza özel kusursuz etkinlikler." />
-        <div className="grid justify-center items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 pt-8 md:pt-16 px-6 md:px-12 lg:px-16">
+        <div className="max-w-7xl mx-auto grid justify-center items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 pt-8 md:pt-16 px-6 md:px-8">
           <ServiceCard
             title="Kongre &amp; Zirve Organizasyonları"
             description="Ulusal ve uluslararası kongrelerde profesyonel çözüm ortağınız."
@@ -74,6 +78,8 @@ export default function Home() {
           />
         </div>
       </div>
+
+      {/* PROCESS SECTION — desktop: component, mobile: static image */}
       <div className="mt-16 md:mt-24 lg:mt-36">
         <SectionHeader
           titleSpanFirst="Organizasyon"
@@ -83,6 +89,8 @@ export default function Home() {
         <SectionDescription description="İlk konseptten final rapora kadar, her aşamada titizlik ve özenle size rehberlik ediyoruz." />
         <ProcessScheme />
       </div>
+
+      {/* REVIEWS SECTION */}
       <div className="mt-16 md:mt-24 lg:mt-36">
         <SectionHeader
           titleSpanFirst="Müşteri"
@@ -91,13 +99,13 @@ export default function Home() {
         />
         <SectionDescription description="Birlikte çalışmak güven ile ilgilidir. İşte son projelerimizden dürüst geri bildirimler." />
         <ReviewPoints />
-        <div className="grid justify-center items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12 pt-8 md:pt-16 px-6 md:px-12 lg:px-16">
+        <div className="max-w-7xl mx-auto grid justify-center items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12 pt-8 md:pt-16 px-6 md:px-8">
           <ReviewCard
             review={{
               name: "Dr. Selin Arslan",
-              role: "Association President",
+              role: "Dernek Başkanı",
               feedback:
-                "Managing an international summit is stressful, but Freyer made it look effortless. Their precision and professional demeanor gave us complete peace of mind.",
+                "Uluslararası bir zirveyi yönetmek stresli olabilir ama Freyr bunu zahmetsiz gösterdi. Titizlikleri ve profesyonel yaklaşımları bize tam bir huzur verdi.",
               point: 5,
               imageURL: "/images/profile1.png",
             }}
@@ -105,9 +113,9 @@ export default function Home() {
           <ReviewCard
             review={{
               name: "Marcus Weber",
-              role: "Marketing Director",
+              role: "Pazarlama Direktörü",
               feedback:
-                "We wanted a statement, not just an event. They understood our brand instantly and delivered a breathtaking design. They don't just execute; they elevate.",
+                "Sadece bir etkinlik değil, bir manifesto istiyorduk. Markamızı anında kavradılar ve nefes kesici bir tasarım sundular. Sadece uygulama yapmıyorlar; yükseltiyorlar.",
               point: 4,
               imageURL: "/images/profile2.png",
             }}
@@ -115,15 +123,17 @@ export default function Home() {
           <ReviewCard
             review={{
               name: "Leyla K.",
-              role: "Private Client",
+              role: "Bireysel Müşteri",
               feedback:
-                "I was anxious about the timing, but the team remained calm and handled every detail perfectly. I could actually enjoy my own event without worrying.",
+                "Zamanlama konusunda endişeliydim ama ekip sakin kaldı ve her detayı mükemmel şekilde yönetti. Kendi etkinliğimin tadını endişe duymadan çıkarabildim.",
               point: 5,
               imageURL: "/images/profile3.png",
             }}
           />
         </div>
       </div>
+
+      {/* FAQ SECTION — narrower container */}
       <div className="mt-16 md:mt-24 lg:mt-36">
         <SectionHeader
           titleSpanFirst="Sıkça Sorulan"
@@ -131,14 +141,7 @@ export default function Home() {
           order={true}
         />
         <SectionDescription description="En sık sorulan sorularınıza yanıtlar." />
-
-        <div className="faq-div relative w-full aspect-[1240/577] mt-8 md:mt-16">
-          <Image
-            src="/faq-bg.svg"
-            alt="faq"
-            fill
-            className="object-cover px-4 md:px-16 lg:px-48"
-          />
+        <div className="max-w-3xl mx-auto mt-8 md:mt-16 px-4 md:px-6">
           <FAQAccordion
             items={[
               {
@@ -166,6 +169,8 @@ export default function Home() {
           />
         </div>
       </div>
+
+      {/* CTA SECTION */}
       <div id="cta" className="mt-16 md:mt-24 lg:mt-36 px-6 md:px-12 lg:px-16">
         <CTASection />
       </div>

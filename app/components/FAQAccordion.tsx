@@ -16,7 +16,7 @@ const FAQAccordion = ({ items }: { items: FAQItem[] }) => {
   };
 
   return (
-    <div className="grid w-full items-center gap-8 pt-8 md:pt-16 px-4 md:px-16 lg:px-32">
+    <div className="grid w-full items-center gap-6 md:gap-8">
       {items.map((item, index) => (
         <FAQ
           key={index}
