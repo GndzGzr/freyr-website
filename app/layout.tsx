@@ -1,16 +1,28 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Montserrat, EB_Garamond } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const interSans = Inter({
+  variable: "--font-inter-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const montserrat = Montserrat({
+  variable: "--font-montserrat-sans",
   subsets: ["latin"],
 });
+
+const EBGaramond = EB_Garamond({
+  variable: "--font-eb-garamond",
+  subsets: ["latin"],
+});
+
+const EBGaramondItalic = EB_Garamond({
+  variable: "--font-eb-garamond-italic",
+  subsets: ["latin"],
+  style: ["italic"],
+});
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${interSans.variable} ${montserrat.variable} ${EBGaramond.variable} ${EBGaramondItalic.variable} antialiased`}
       >
         {children}
       </body>
