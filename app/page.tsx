@@ -50,7 +50,7 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="mt-36">
+      <div id="services" className="mt-36">
         <SectionHeader
           titleSpanFirst="Our Bespoke"
           titleSpanSecond="Services"
@@ -62,19 +62,19 @@ export default function Home() {
             title="Congress & Summit Organizations"
             description="Expert planning for national & international congresses."
             imageSrc="/[service1].svg"
-            href="/services/event-planning"
+            href="#cta"
           />
           <ServiceCard
             title="Corporate Events"
             description="Professional solutions strengthening brand identity."
             imageSrc="/[service2].svg"
-            href="/services/corporate-events"
+            href="#cta"
           />
           <ServiceCard
             title="Gala & Award Ceremonies"
             description="Flawless planning for prestigious events."
             imageSrc="/[service3].svg"
-            href="/services/gala-award-ceremonies"
+            href="#cta"
           />
         </div>
       </div>
@@ -178,7 +178,7 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="mt-36 px-24">
+      <div id="#cta" className="mt-36 px-24">
         <CTASection />
       </div>
       <div className="mt-36">

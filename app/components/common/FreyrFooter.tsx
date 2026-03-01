@@ -25,21 +25,21 @@ const FreyrFooter = () => {
 
                         {/* Contact Person */}
                         <div className="flex flex-col gap-1">
-                            <p className="font-semibold text-[var(--light-font)]">Ufuk Kanburoğlu</p>
-                            <p className="text-sm text-[var(--passive-dark-color)]">General Manager</p>
+                            <p className="font-semibold text-lg text-[var(--light-font)]">Ufuk Kanburoğlu</p>
+                            <p className="text-md text-[var(--passive-dark-color)]">General Manager</p>
                         </div>
 
                         {/* Contact Details */}
                         <div className="flex flex-col gap-3">
-                            <a href="tel:+905422473635" className="flex items-center gap-3 text-sm text-[var(--light-font)] hover:text-[var(--golden-background)] transition-colors">
+                            <a href="tel:+905422473635" className="flex items-center gap-3 text-md text-[var(--light-font)] hover:text-[var(--golden-background)] transition-colors">
                                 <FaPhone className="text-[var(--golden-background)] text-base shrink-0" />
                                 +90 542 247 36 35
                             </a>
-                            <a href="mailto:ufuk@freyreventcongress.com" className="flex items-center gap-3 text-sm text-[var(--light-font)] hover:text-[var(--golden-background)] transition-colors">
+                            <a href="mailto:ufuk@freyreventcongress.com" className="flex items-center gap-3 text-md text-[var(--light-font)] hover:text-[var(--golden-background)] transition-colors">
                                 <MdOutlineEmail className="text-[var(--golden-background)] text-xl shrink-0" />
                                 ufuk@freyreventcongress.com
                             </a>
-                            <a href="https://www.freyreventcongress.com.tr" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-[var(--light-font)] hover:text-[var(--golden-background)] transition-colors">
+                            <a href="https://www.freyreventcongress.com.tr" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-md text-[var(--light-font)] hover:text-[var(--golden-background)] transition-colors">
                                 <TbWorld className="text-[var(--golden-background)] text-xl shrink-0" />
                                 www.freyreventcongress.com.tr
                             </a>
@@ -48,19 +48,19 @@ const FreyrFooter = () => {
 
                     {/* Right: Quick Links */}
                     <div className="flex flex-col gap-4">
-                        <p className="font-semibold text-[var(--golden-background)]">Quick Links</p>
+                        <p className="font-semibold text-md text-[var(--golden-background)]">Quick Links</p>
                         <nav className="flex flex-col gap-3">
-                            <a href="/" className="text-sm text-[var(--light-font)] hover:text-[var(--golden-background)] transition-colors">Home</a>
-                            <a href="/services" className="text-sm text-[var(--light-font)] hover:text-[var(--golden-background)] transition-colors">Services</a>
-                            <a href="/about" className="text-sm text-[var(--light-font)] hover:text-[var(--golden-background)] transition-colors">About Us</a>
-                            <a href="/contact" className="text-sm text-[var(--light-font)] hover:text-[var(--golden-background)] transition-colors">Contact</a>
+                            <a href="/" className="text-md text-[var(--light-font)] hover:text-[var(--golden-background)] transition-colors">Home</a>
+                            <a href="/services" className="text-md text-[var(--light-font)] hover:text-[var(--golden-background)] transition-colors">Services</a>
+                            <a href="/about" className="text-md text-[var(--light-font)] hover:text-[var(--golden-background)] transition-colors">About Us</a>
+                            <a href="/contact" className="text-md text-[var(--light-font)] hover:text-[var(--golden-background)] transition-colors">Contact</a>
                         </nav>
                     </div>
                 </div>
 
                 {/* Follow Us */}
                 <div className="flex flex-col items-center gap-5 pt-8">
-                    <p className="font-semibold text-[var(--golden-background)]">Follow Us</p>
+                    <p className="font-semibold text-md text-[var(--golden-background)]">Follow Us</p>
                     <div className="flex items-center gap-4">
                         <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer"
                             className="w-10 h-10 rounded-full border border-[var(--golden-background)] flex items-center justify-center text-[var(--golden-background)] hover:bg-[var(--golden-background)] hover:text-black transition-colors">
