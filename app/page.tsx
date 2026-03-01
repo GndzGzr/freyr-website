@@ -178,7 +178,7 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="mt-36">
+      <div className="mt-36 px-24">
         <CTASection />
       </div>
       <div className="mt-36">

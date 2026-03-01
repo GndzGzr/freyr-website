@@ -265,7 +265,10 @@ body {
 
 .cta-section {
   border-top: 1px solid rgba(210, 173, 122, 0.35);
+  border-left: 1px solid rgba(210, 173, 122, 0.35);
   border-bottom: 1px solid rgba(210, 173, 122, 0.35);
+  border-right: 1px solid rgba(210, 173, 122, 0.35);
+  border-radius: 25px;
 }
 
 .cta-glow {
