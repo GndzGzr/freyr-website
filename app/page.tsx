@@ -19,7 +19,6 @@ import FreyrFooter from "./components/common/FreyrFooter";
 export default function Home() {
   return (
     <div className="min-h-screen font-sans">
-      <FreyerHeader />
       <MainHero
         spanFirst="Prestijli Organizasyonlar. Kusursuz Deneyimler."
         spanSecond="Global Standartlar."
@@ -35,9 +34,15 @@ export default function Home() {
         <SectionDescription description="Başarımızın arkasındaki hikayeyi keşfedin." />
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row px-6 md:px-8 mt-8 md:mt-16 gap-8 md:gap-12">
           <p className="paragraph text-left">
-            FREYR Event &amp; Congress; etkinlik sektöründe kaliteyi, güveni ve yenilikçi bakış açısını merkezine alan bir organizasyon firmasıdır.
-            Bilimsel kongrelerden kurumsal etkinliklere, özel gala gecelerinden prestijli ödül törenlerine kadar her organizasyonu global standartlara taşıyoruz.<br></br>
-            <br></br> Sadece bir operasyon ajansı değiliz; markanızın stratejik çözüm ortağıyız. Deneyimli ekibimizle kusursuz ve uçtan uca yönetimi garanti ediyoruz. Vizyonunuzu hayata geçiriyor, markanızı zirveye taşıyoruz.
+            FREYR Event &amp; Congress; etkinlik sektöründe kaliteyi, güveni ve
+            yenilikçi bakış açısını merkezine alan bir organizasyon firmasıdır.
+            Bilimsel kongrelerden kurumsal etkinliklere, özel gala gecelerinden
+            prestijli ödül törenlerine kadar her organizasyonu global
+            standartlara taşıyoruz.<br></br>
+            <br></br> Sadece bir operasyon ajansı değiliz; markanızın stratejik
+            çözüm ortağıyız. Deneyimli ekibimizle kusursuz ve uçtan uca yönetimi
+            garanti ediyoruz. Vizyonunuzu hayata geçiriyor, markanızı zirveye
+            taşıyoruz.
           </p>
           <Image
             src="/images/about.png"
@@ -150,41 +155,36 @@ export default function Home() {
           <SectionDescription description="En sık sorulan sorularınıza yanıtlar." />
           <div className="max-w-3xl mx-auto mt-8 md:mt-16 px-4 md:px-6">
             <FAQAccordion
-            items={[
-              {
-                question: "Hangi ölçekte etkinlikleri yönetiyorsunuz?",
-                answer:
-                  "Küçük toplantılardan büyük ölçekli konferanslara ve uluslararası zirvelere kadar her ölçekte etkinlik yönetiyoruz.",
-              },
-              {
-                question: "Bir etkinliğin başarısını nasıl garanti ediyorsunuz?",
-                answer:
-                  "Sürecimiz titiz planlama, detaylara özen ve müşterilerle sürekli iletişim içerir. Her unsurun vizyonlarıyla uyumlu olmasını sağlarız.",
-              },
-              {
-                question: "Etkinlik sonrası destek sunuyor musunuz?",
-                answer:
-                  "Evet, müşteri memnuniyetini sağlamak için geri bildirim toplama, raporlama ve takip hizmetleri dahil kapsamlı etkinlik sonrası destek sunuyoruz.",
-              },
-              {
-                question:
-                  "Özel istekleri veya benzersiz gereksinimleri karşılayabiliyor musunuz?",
-                answer:
-                  "Kesinlikle. Esnekliğimiz ve etkinlikleri belirli müşteri ihtiyaç ve tercihlerine göre özelleştirme yeteneğimizle gurur duyuyoruz.",
-              },
-            ]}
-          />
-        </div>
+              items={[
+                {
+                  question: "Hangi ölçekte etkinlikleri yönetiyorsunuz?",
+                  answer:
+                    "Küçük toplantılardan büyük ölçekli konferanslara ve uluslararası zirvelere kadar her ölçekte etkinlik yönetiyoruz.",
+                },
+                {
+                  question:
+                    "Bir etkinliğin başarısını nasıl garanti ediyorsunuz?",
+                  answer:
+                    "Sürecimiz titiz planlama, detaylara özen ve müşterilerle sürekli iletişim içerir. Her unsurun vizyonlarıyla uyumlu olmasını sağlarız.",
+                },
+                {
+                  question: "Etkinlik sonrası destek sunuyor musunuz?",
+                  answer:
+                    "Evet, müşteri memnuniyetini sağlamak için geri bildirim toplama, raporlama ve takip hizmetleri dahil kapsamlı etkinlik sonrası destek sunuyoruz.",
+                },
+                {
+                  question:
+                    "Özel istekleri veya benzersiz gereksinimleri karşılayabiliyor musunuz?",
+                  answer:
+                    "Kesinlikle. Esnekliğimiz ve etkinlikleri belirli müşteri ihtiyaç ve tercihlerine göre özelleştirme yeteneğimizle gurur duyuyoruz.",
+                },
+              ]}
+            />
+          </div>
         </div>
       </div>
 
-      {/* CTA SECTION */}
-      <div id="cta" className="mt-16 md:mt-24 lg:mt-36 px-6 md:px-12 lg:px-16">
-        <CTASection />
-      </div>
-      <div id="contact" className="mt-16 md:mt-24 lg:mt-36">
-        <FreyrFooter />
-      </div>
+
     </div>
   );
 }

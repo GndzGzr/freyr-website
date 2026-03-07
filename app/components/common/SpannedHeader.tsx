@@ -5,7 +5,7 @@ const chunkWords = (text: string, size: number) =>
         return acc;
     }, []);
 
-const SpannedHeader = ({spanFirst, spanSecond}: {spanFirst: string, spanSecond: string}) => {
+const SpannedHeader = ({ spanFirst, spanSecond }: { spanFirst: string, spanSecond: string }) => {
     const firstChunks = chunkWords(spanFirst, 2);
     const secondChunks = chunkWords(spanSecond, 2);
 
