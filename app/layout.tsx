@@ -4,6 +4,8 @@ import "./globals.css";
 import FreyerHeader from "./components/common/header/FreyrHeader";
 import FreyrFooter from "./components/common/FreyrFooter";
 import CTASection from "./components/CTASection";
+import LoadingOverlay from "./components/LoadingOverlay";
+import SmoothScroll from "./components/SmoothScroll";
 
 const interSans = Inter({
   variable: "--font-inter-sans",
@@ -65,8 +67,10 @@ export default function RootLayout({
     <html lang="en">
 
       <body
-        className={`${interSans.variable} ${montserrat.variable} ${EBGaramond.variable} ${EBGaramondItalic.variable} antialiased`}
+        className={`${interSans.variable} ${montserrat.variable} ${EBGaramond.variable} ${EBGaramondItalic.variable} antialiased mt-16`}
       >
+        <LoadingOverlay />
+        <SmoothScroll />
         <FreyerHeader />
         {children}
         {/* CTA SECTION */}

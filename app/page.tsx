@@ -67,19 +67,19 @@ export default function Home() {
             title="Kongre &amp; Zirve Organizasyonları"
             description="Ulusal ve uluslararası kongrelerde profesyonel çözüm ortağınız."
             imageSrc="/[service1].svg"
-            href="#cta"
+            href="/services/#servicecard"
           />
           <ServiceCard
             title="Kurumsal Etkinlikler"
             description="Marka kimliğinizi güçlendiren profesyonel organizasyonlar."
             imageSrc="/[service2].svg"
-            href="#cta"
+            href="/services/#servicecard"
           />
           <ServiceCard
             title="Gala &amp; Ödül Törenleri"
             description="Prestijli etkinlikler için kusursuz planlama."
             imageSrc="/[service3].svg"
-            href="#cta"
+            href="/services/#servicecard"
           />
         </div>
       </div>

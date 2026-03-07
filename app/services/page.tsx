@@ -13,7 +13,7 @@ const ServicesPage = () => {
       <ServicesHero spanFirst="Özel" spanSecond="Hizmetlerimiz" />
 
       {/* SERVICES SECTION */}
-      <div className="mt-16 md:mt-24 lg:mt-36">
+      <div id="servicecard" className="mt-16 md:mt-24 lg:mt-36">
         <SectionHeader
           titleSpanFirst="Hizmet"
           titleSpanSecond="Alanlarımız"

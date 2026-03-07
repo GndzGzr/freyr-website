@@ -35,10 +35,33 @@
   --font-serif-italic: var(--font-eb-garamond-italic);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+
+  /* Firefox scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(210, 173, 122, 0.5) rgba(255, 255, 255, 0.04);
+}
+
+/* Webkit scrollbar (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(210, 173, 122, 0.45);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(210, 173, 122, 0.75);
 }
 
 
