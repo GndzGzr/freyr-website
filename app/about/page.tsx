@@ -9,6 +9,25 @@ import Image from "next/image";
 import AboutStory from "../components/AboutStory";
 import AboutTeam from "../components/AboutTeam";
 import ClientMarquee from "../components/ClientMarquee";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Hakkımızda",
+  description:
+    "Freyr Event & Congress hakkında bilgi edinin. Hikayemiz, misyonumuz, vizyonumuz ve etkinlik sektöründeki deneyimimizi keşfedin.",
+  keywords: [
+    "Freyr hakkında",
+    "etkinlik şirketi İstanbul",
+    "kongre yönetim ekibi",
+    "Freyr Event Congress hakkımızda",
+  ],
+  alternates: { canonical: "https://www.freyreventcongress.com/about" },
+  openGraph: {
+    title: "Hakkımızda | Freyr Event & Congress",
+    description: "Freyr Event & Congress hakkında bilgi edinin. Hikayemiz, misyonumuz ve vizyonumuz.",
+    url: "https://www.freyreventcongress.com/about",
+  },
+};
 
 const AboutPage = () => {
     return (

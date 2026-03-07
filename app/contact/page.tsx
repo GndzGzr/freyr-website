@@ -21,7 +21,7 @@ const info = [
       </svg>
     ),
     label: "Adres",
-    value: "İstanbul, Türkiye",
+    value: "1131 Cad. No:7-9, Huzur Mah., Cevizlidere – Çankaya, Ankara 06204",
   },
   {
     icon: (

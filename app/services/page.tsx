@@ -6,6 +6,27 @@ import ReviewPoints from "../components/ReviewPoints";
 import ReviewCard from "../components/ReviewCard";
 import ServicesSection from "../components/ServicesSection";
 import PreviousWorks from "../components/PreviousWorks";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Hizmetlerimiz",
+  description:
+    "Kongre ve zirve organizasyonu, kurumsal etkinlikler, fuar yönetimi, gala geceleri ve kültürel etkinlikler. Freyr Event & Congress hizmet alanlarını keşfedin.",
+  keywords: [
+    "kongre organizasyonu İstanbul",
+    "kurumsal etkinlik yönetimi",
+    "gala gecesi organizasyon",
+    "fuar yönetimi Türkiye",
+    "zirve organizasyonu",
+    "event management services Turkey",
+  ],
+  alternates: { canonical: "https://www.freyreventcongress.com/services" },
+  openGraph: {
+    title: "Hizmetlerimiz | Freyr Event & Congress",
+    description: "Kongre, kurumsal etkinlik, fuar, gala ve kültürel organizasyon hizmetleri.",
+    url: "https://www.freyreventcongress.com/services",
+  },
+};
 
 const ServicesPage = () => {
   return (
