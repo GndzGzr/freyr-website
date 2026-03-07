@@ -35,14 +35,14 @@ export const metadata: Metadata = {
     template: "%s | Freyr Event & Congress",
   },
   description:
-    "İstanbul merkezli profesyonel etkinlik ve kongre yönetim şirketi. Uluslararası kongreler, kurumsal etkinlikler, gala geceleri ve fuar organizasyonlarında uzman ekibimizle yanınızdayız.",
+    "Ankara, Çankaya merkezli profesyonel etkinlik ve kongre yönetim şirketi. Uluslararası kongreler, kurumsal etkinlikler, gala geceleri ve fuar organizasyonlarında uzman ekibimizle yanınızdayız.",
   keywords: [
     "Freyr Event Congress",
     "Freyr etkinlik",
     "etkinlik yönetimi",
     "kongre organizasyonu",
     "kongre yönetimi",
-    "İstanbul etkinlik şirketi",
+    "Ankara etkinlik şirketi",
     "uluslararası kongre",
     "kurumsal etkinlik",
     "gala organizasyonu",
