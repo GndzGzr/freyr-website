@@ -1,20 +1,20 @@
 const team = [
   {
     name: "Ufuk Kanburoğlu",
-    role: "Founder",
-    bio: "FREYR Event & Congress is an event management company that prioritises quality, reliability and an innovative approach in the events sector.",
+    role: "Kurucu",
+    bio: "FREYR Event & Congress; kaliteyi, güvenilirliği ve etkinlik sektöründe yenilikçi bir yaklaşımı ön planda tutan bir etkinlik yönetim şirketidir.",
     imageUrl: "/images/profile1.png",
   },
   {
     name: "Ufuk Kanburoğlu",
-    role: "Founder",
-    bio: "FREYR Event & Congress is an event management company that prioritises quality, reliability and an innovative approach in the events sector.",
+    role: "Kurucu",
+    bio: "FREYR Event & Congress; kaliteyi, güvenilirliği ve etkinlik sektöründe yenilikçi bir yaklaşımı ön planda tutan bir etkinlik yönetim şirketidir.",
     imageUrl: "/images/profile2.png",
   },
   {
     name: "Ufuk Kanburoğlu",
-    role: "Founder",
-    bio: "FREYR Event & Congress is an event management company that prioritises quality, reliability and an innovative approach in the events sector.",
+    role: "Kurucu",
+    bio: "FREYR Event & Congress; kaliteyi, güvenilirliği ve etkinlik sektöründe yenilikçi bir yaklaşımı ön planda tutan bir etkinlik yönetim şirketidir.",
     imageUrl: "/images/profile3.png",
   },
 ];

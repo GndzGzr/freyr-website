@@ -7,41 +7,35 @@ const AboutStory = () => (
       {/* LEFT — text blocks + stats */}
       <div className="flex-1 flex flex-col gap-10">
 
-        {/* Our Story */}
         <div>
           <h2 className="mb-3">
-            <span className="titleSpanFirst">Our </span>
-            <span className="titleSpanSecond font-serif">Story</span>
+            <span className="titleSpanFirst">Bizim </span>
+            <span className="titleSpanSecond font-serif">Hikayemiz</span>
           </h2>
           <p className="paragraph text-[#c4c4c4] leading-relaxed">
-            FREYR Event &amp; Congress is an event management company that prioritises
-            quality, reliability and an innovative approach in the events sector. With our
-            experienced team, we offer a wide range of services, from scientific conferences
-            to corporate launches, gala evenings to private events. Every project is a
-            matter of prestige for us.
+            FREYR Event &amp; Congress; kaliteyi, güvenilirliği ve etkinlik sektöründe yenilikçi bir yaklaşımı ön planda tutan bir etkinlik yönetim şirketidir.
+            Deneyimli ekibimizle bilimsel kongrelerden kurumsal lansmanllara, gala gecelerinden özel organizasyonlara kadar geniş bir hizmet yelpazesi sunuyoruz.
+            Her proje bizim için bir prestij meselesidir.
           </p>
         </div>
 
-        {/* Our Mission */}
         <div>
           <h2 className="mb-3">
-            <span className="titleSpanFirst">Our </span>
-            <span className="titleSpanSecond font-serif">Mission</span>
+            <span className="titleSpanFirst">Bizim </span>
+            <span className="titleSpanSecond font-serif">Misyonumuz</span>
           </h2>
           <p className="paragraph text-[#c4c4c4] leading-relaxed">
-            To provide our customers with a seamless, impressive and high-standard
-            organisational experience.
+            Müşterilerimize kusursuz, etkileyici ve yüksek standartta bir organizasyon deneyimi sunmak.
           </p>
         </div>
 
-        {/* Our Vision */}
         <div>
           <h2 className="mb-3">
-            <span className="titleSpanFirst">Our </span>
-            <span className="titleSpanSecond font-serif">Vision</span>
+            <span className="titleSpanFirst">Bizim </span>
+            <span className="titleSpanSecond font-serif">Vizyonumuz</span>
           </h2>
           <p className="paragraph text-[#c4c4c4] leading-relaxed">
-            To be a globally preferred, powerful event brand.
+            Küresel ölçekte tercih edilen, güçlü bir etkinlik markası olmak.
           </p>
         </div>
 
@@ -49,11 +43,11 @@ const AboutStory = () => (
         <div className="flex flex-row gap-12 mt-2">
           <div>
             <p className="text-white" style={{ fontSize: "3.5rem", fontWeight: 900, lineHeight: 1 }}>150+</p>
-            <p className="mt-1" style={{ color: "#D2AD7A", fontSize: "1rem" }}>Happy Clients</p>
+            <p className="mt-1" style={{ color: "#D2AD7A", fontSize: "1rem" }}>Mutlu Müşteri</p>
           </div>
           <div>
             <p className="text-white" style={{ fontSize: "3.5rem", fontWeight: 900, lineHeight: 1 }}>70+</p>
-            <p className="mt-1" style={{ color: "#D2AD7A", fontSize: "1rem" }}>Completed Projects</p>
+            <p className="mt-1" style={{ color: "#D2AD7A", fontSize: "1rem" }}>Tamamlanan Proje</p>
           </div>
         </div>
 

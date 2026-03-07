@@ -35,11 +35,11 @@ const ServicesPage = () => {
       {/* PREVIOUS WORKS SECTION */}
       <div className="mt-16 md:mt-24 lg:mt-36">
         <SectionHeader
-          titleSpanFirst="Previous"
-          titleSpanSecond="Works"
+          titleSpanFirst="Önceki"
+          titleSpanSecond="Çalışmalarımız"
           order={true}
         />
-        <SectionDescription description="From initial concept to final reporting, we guide you through every stage with precision and care." />
+        <SectionDescription description="İlk konseptten final rapora kadar geçen süreçte en iyi çalışmalarımızı sizinle paylaşıyoruz." />
         <PreviousWorks />
       </div>
       <div className="mt-16 md:mt-24 lg:mt-36">

@@ -23,22 +23,22 @@ const AboutPage = () => {
             {/* TEAM SECTION */}
             <div className="mt-16 md:mt-24 lg:mt-36">
                 <SectionHeader
-                    titleSpanFirst="Our"
-                    titleSpanSecond="Team"
+                    titleSpanFirst="Bizim"
+                    titleSpanSecond="Ekibimiz"
                     order={true}
                 />
-                <SectionDescription description="Discover the story behind our success." />
+                <SectionDescription description="Başarımızın arkasındaki insanlarla tanışın." />
                 <AboutTeam />
             </div>
 
             {/* CLIENT SECTION */}
             <div className="mt-16 md:mt-24 lg:mt-36">
                 <SectionHeader
-                    titleSpanFirst="Our"
-                    titleSpanSecond="Client"
+                    titleSpanFirst="Müşteri"
+                    titleSpanSecond="lerimiz"
                     order={true}
                 />
-                <SectionDescription description="Discover the story behind our success." />
+                <SectionDescription description="Birlikte başarıya imza attığımız değerli iş ortaklarımız." />
                 <ClientMarquee />
             </div>
 
